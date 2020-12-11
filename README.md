@@ -209,6 +209,7 @@ ayenda_web_1     entrypoint.sh bash -c rm - ...   Up      0.0.0.0:3000->3000/tcp
 
 and get in the browser using port 3000: aos.local.co:3000 or pms.local.co:3000
 
+To do this, just run `~ sudo systemctl restart redis.servicef` and add those lines.
 
 ## "Save Emails and Attachments" chrome complement and Gmail
 We have an integration with "Save Emails and Attachments" and Gmail, every 15 minutes is uploaded to Google Drive all pdf's sent by Rategain, this way we can capture CVV for autocollect reservations.
