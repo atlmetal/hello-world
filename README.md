@@ -21,7 +21,8 @@ sudo apt-get install nodejs
 ```
 bundle install
 ```
-If after run `~ bundle install` it shows you `rbenv: version 2.6.5 is not installed` just run: `~ rbenv install 2.6.5` then try again:  `~ bundle install`.
+If after running `~ bundle install` it shows you `rbenv: version 2.6.5 is not installed` just run: `~ rbenv install 2.6.5` then try again:  `~ bundle install`.
+
 After get bundle installed, you may get a warning message: "Warning: the running version of Bundler (1.17.2) is older than the version that created the lockfile (1.17.3). We suggest you upgrade to the latest version of Bundler by running `~ gem install bundler`." Just run it.
 
 
@@ -67,7 +68,7 @@ cp config/sidekiq.yml.example config/sidekiq.yml
 ```
 rails db:create
 ```
-You might get an error here due to postgres, if you didn't, continue.
+You might get an error here due to postgres, if you didn't, continue with Migrate & Seed.
 
 If you got an error, we are going to install the postgreSQL database and configure a user to manage it, the first thing you must do is configure the repositories lists
 
@@ -107,7 +108,7 @@ rails db:migrate
 ```
 rails db:seed
 ```
-You might get an error here due to Redis, if you didn't, continue.
+You might get an error here due to Redis, if you didn't, continue with Run the webserver.
 
 Redis installation and configuration
 
@@ -115,7 +116,6 @@ Redis installation and configuration
 
 `~ sudo apt install redis-server`
 
-`~ sudo apt install redis-server`
 
 This will download and install Redis and its dependencies. After this, there is a major configuration change to be made in the Redis configuration file, generated automatically during installation.
 
