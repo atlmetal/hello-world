@@ -121,22 +121,14 @@ This will download and install Redis and its dependencies. After this, there is 
 
 `~ sudo nano /etc/redis/redis.conf`
 
-Find the `supervised` directive within the file. This directive allows you to declare an init system to manage Redis as a service, giving you more control over its operation. By default, the value of the `supervised` directive is `no`. Since this is Ubuntu, which uses the init system of systemd, change the value to `systemd`
+Find the `supervised` directive within the file. This directive allows you to declare an init system to manage Redis as a service, giving you more control over its operation. By default, the value of the `supervised` directive is `no`. Since this is Ubuntu, which uses the init system of systemd, change the value to `systemd`. Then it will be `supervised systemd`
 
-. . .
+Then restart the Redis service to reflect the changes made to the configuration file:
 
- If you run Redis from upstart or systemd, Redis can interact with your
- supervision tree. Options:
-   supervised no      - no supervision interaction
-   supervised upstart - signal upstart by putting Redis into SIGSTOP mode
-   supervised systemd - signal systemd by writing READY=1 to $NOTIFY_SOCKET
-   supervised auto    - detect upstart or systemd method based on
-                        UPSTART_JOB or NOTIFY_SOCKET environment variables
- Note: these supervision methods only signal "process is ready."
-       They do not enable continuous liveness pings back to your supervisor.
-supervised systemd
+`~ sudo systemctl restart redis.servicef`
 
-. . .
+And if everything it's ok, you'll see in Loaded the value of `enabled` and in Active you'll see `active (running)`
+
 
 
 ### Run the webserver:
