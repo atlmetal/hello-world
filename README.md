@@ -22,7 +22,7 @@ sudo apt-get install nodejs
 bundle install
 ```
 If after run `~ bundle install` it shows you `rbenv: version 2.6.5 is not installed` just run: `~ rbenv install 2.6.5` then try again:  `~ bundle install`.
-After get bundle installed, you may get a warning message: "Warning: the running version of Bundler (1.17.2) is older than the version that created the lockfile (1.17.3). We suggest you upgrade to the latest version of Bundler by running `~ gem install bundler`."
+After get bundle installed, you may get a warning message: "Warning: the running version of Bundler (1.17.2) is older than the version that created the lockfile (1.17.3). We suggest you upgrade to the latest version of Bundler by running `~ gem install bundler`." Just run it.
 
 
 ### Install assets dependencies:
@@ -41,7 +41,11 @@ cp config/master.key.example config/master.key
 cp config/credentials.yml.enc.example config/credentials.yml.enc
 ```
 
-Copy all .example files from config/third_keys/ and paste without that extension.
+Copy all .example files from config/third_keys/ and paste without that extension. Let's see how.
+Use `~ ls config/third_keys/` to see wich .example files you have to copy & paste without the .example extension.
+Then use `~ cp config/third_keys/name_file.example config/third_keys/name_file` to get the copy.
+Use `~ ls config/third_keys/` just to be sure now you have all the files there, with and without .example extension.
+
 
 ### Setup Database
 ```
