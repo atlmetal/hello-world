@@ -107,6 +107,38 @@ rails db:migrate
 ```
 rails db:seed
 ```
+You might get an error here due to Redis, if you didn't, continue.
+
+Redis installation and configuration
+
+`~ sudo apt update`
+
+`~ sudo apt install redis-server`
+
+`~ sudo apt install redis-server`
+
+This will download and install Redis and its dependencies. After this, there is a major configuration change to be made in the Redis configuration file, generated automatically during installation.
+
+`~ sudo nano /etc/redis/redis.conf`
+
+Find the `supervised` directive within the file. This directive allows you to declare an init system to manage Redis as a service, giving you more control over its operation. By default, the value of the `supervised` directive is `no`. Since this is Ubuntu, which uses the init system of systemd, change the value to `systemd`
+
+. . .
+
+# If you run Redis from upstart or systemd, Redis can interact with your
+# supervision tree. Options:
+#   supervised no      - no supervision interaction
+#   supervised upstart - signal upstart by putting Redis into SIGSTOP mode
+#   supervised systemd - signal systemd by writing READY=1 to $NOTIFY_SOCKET
+#   supervised auto    - detect upstart or systemd method based on
+#                        UPSTART_JOB or NOTIFY_SOCKET environment variables
+# Note: these supervision methods only signal "process is ready."
+#       They do not enable continuous liveness pings back to your supervisor.
+supervised systemd
+
+. . .
+
+
 ### Run the webserver:
 ```
 rails server
