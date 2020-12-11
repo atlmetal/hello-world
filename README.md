@@ -21,7 +21,7 @@ sudo apt-get install nodejs
 ```
 bundle install
 ```
-If after run `~ bundle install` it shows you `rbenv: version `2.6.5' is not installed` just run: `~ rbenv install 2.6.5` then try again:  `~ bundle install`.
+If after run `~ bundle install` it shows you `rbenv: version 2.6.5 is not installed` just run: `~ rbenv install 2.6.5` then try again:  `~ bundle install`.
 After get bundle installed, you may get a warning message: "Warning: the running version of Bundler (1.17.2) is older than the version that created the lockfile (1.17.3). We suggest you upgrade to the latest version of Bundler by running `~ gem install bundler`."
 
 
