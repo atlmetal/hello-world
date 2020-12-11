@@ -21,6 +21,8 @@ sudo apt-get install nodejs
 ```
 bundle install
 ```
+IF after run 'bundle install' it shows you 'rbenv: version `2.6.5' is not installed' just run '~ rbenv install 2.6.5' then run again '~ bundle install
+
 ### Install assets dependencies:
 ```
 npm i -g yarn
