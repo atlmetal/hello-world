@@ -43,6 +43,7 @@ cp config/credentials.yml.enc.example config/credentials.yml.enc
 
 Copy all .example files from config/third_keys/ and paste without that extension. Let's see how.
 Use `~ ls config/third_keys/` to see wich .example files you have to copy & paste without the .example extension.
+
 Then use `~ cp config/third_keys/name_file.example config/third_keys/name_file` to get the copy.
 Use `~ ls config/third_keys/` just to be sure now you have all the files there, with and without .example extension.
 
