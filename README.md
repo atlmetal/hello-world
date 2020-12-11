@@ -67,6 +67,37 @@ cp config/sidekiq.yml.example config/sidekiq.yml
 ```
 rails db:create
 ```
+You might get an error here due to postgres, if you didn't, continue.
+
+If you got an error, we are going to install the postgreSQL database and configure a user to manage it, the first thing you must do is configure the repositories lists
+
+`~ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -`
+
+`~ echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list -`
+
+`~ sudo apt update -`
+
+Once the list of postgreSQL packages is updated we will use the following command to install it
+
+`~ sudo apt -y install postgresql-12 postgresql-client-12`
+
+Once postgreSQL is installed, we will enter the session and create from there a new user with the ability to create databases
+
+`~ sudo -i -u postgres`
+
+`~ createuser --pwprompt --interactive (enter here the user name with out  () )`
+
+`~ Enter password for new role: ****** (your password)`
+
+`~ Enter it again: ******`
+
+`~ Shall the new role be a superuser? (y/n) y`
+
+To exit the postgreSQl session we must use the exit command
+
+After get installed postgres, you got to open Ayenda's repository, go to config/database.yml and set the username & password that you created before for postgres. In the test line too.
+
+Then finaly `~ rails db:create`
 
 ### Migrate & Seed (Not required if you have a db backup)
 ```
@@ -78,7 +109,7 @@ rails db:seed
 ```
 ### Run the webserver:
 ```
-rails start
+rails server
 ```
 
 ## LOCAL DEVELOPMENT ENVIRONMENT (with docker)
