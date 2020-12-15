@@ -64,7 +64,7 @@ cp config/sidekiq.yml.example config/sidekiq.yml
 ```
 ### Install Database
 
-Before continue creating the data base, you might get an error creating it due to postgres, to avoit that we are going to install the postgreSQL database and configure a user to manage it, the first thing you must do is configure the repositories lists
+Before continue creating the data base, you might get an error creating it due to postgres, to avoid that we are going to install the postgreSQL database and configure a user to manage it, the first thing you must do is configure the repositories lists
 
 `~ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -`
 
@@ -98,15 +98,9 @@ Then finaly `~ rails db:create`
 ```
 rails db:create
 ```
-### Migrate & Seed (Not required if you have a db backup)
-```
-rails db:migrate
-```
+### Redis installation and config
 
-```
-rails db:seed
-```
-You might get an error here due to Redis, if you didn't, continue with Run the webserver.
+Before doing migrate & seed to the db, you might get an error here due to Redis, to avoid this let's install and configurate Redis.
 
 Redis installation and configuration
 
@@ -127,7 +121,14 @@ Then restart the Redis service to reflect the changes made to the configuration 
 
 And if everything it's ok, you'll see in Loaded the value of `enabled` and in Active you'll see `active (running)`
 
+### Migrate & Seed (Not required if you have a db backup)
+```
+rails db:migrate
+```
 
+```
+rails db:seed
+```
 
 ### Run the webserver:
 ```
