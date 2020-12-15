@@ -68,7 +68,7 @@ Before continue creating the data base, you might get an error creating it due t
 
 `~ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -`
 
-`~ echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list -`
+`~ echo "deb http://apt.postgresql.org/pub/repos/apt/ ``lsb_release -cs``-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list -`
 
 `~ sudo apt update -`
 
