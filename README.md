@@ -18,13 +18,12 @@ sudo apt-get install nodejs
 ```
 
 ### Install app dependencies:
+
+Make sure you have the correct version of ruby installed before running bundle install or it will generate errors.
+
 ```
 bundle install
 ```
-If after running `~ bundle install` it shows you `rbenv: version 2.6.5 is not installed` just run: `~ rbenv install 2.6.5` then try again:  `~ bundle install`.
-
-After get bundle installed, you may get a warning message: "Warning: the running version of Bundler (1.17.2) is older than the version that created the lockfile (1.17.3). We suggest you upgrade to the latest version of Bundler by running `~ gem install bundler`." Just run it.
-
 
 ### Install assets dependencies:
 ```
@@ -63,14 +62,9 @@ cp config/application.yml.example config/application.yml
 ```
 cp config/sidekiq.yml.example config/sidekiq.yml
 ```
+### Install Database
 
-### Create Database
-```
-rails db:create
-```
-You might get an error here due to postgres, if you didn't, continue with Migrate & Seed.
-
-If you got an error, we are going to install the postgreSQL database and configure a user to manage it, the first thing you must do is configure the repositories lists
+Before continue creating the data base, you might get an error creating it due to postgres, to avoit that we are going to install the postgreSQL database and configure a user to manage it, the first thing you must do is configure the repositories lists
 
 `~ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -`
 
@@ -100,6 +94,10 @@ After get installed postgres, you got to open Ayenda's repository, go to config/
 
 Then finaly `~ rails db:create`
 
+### Create Database
+```
+rails db:create
+```
 ### Migrate & Seed (Not required if you have a db backup)
 ```
 rails db:migrate
