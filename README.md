@@ -41,12 +41,12 @@ cp config/master.key.example config/master.key
 cp config/credentials.yml.enc.example config/credentials.yml.enc
 ```
 
-Copy all .example files from config/third_keys/ and paste without that extension. 
+Copy all .example files from config/third_keys/ and paste without that extension.
 
-Let's see how. Use `~ ls config/third_keys/` to see wich .example files you have to copy & paste without the .example extension.
+Let's see how. Use `ls config/third_keys/` to see wich .example files you have to copy & paste without the .example extension.
 
-Then use `~ cp config/third_keys/name_file.example config/third_keys/name_file` to get the copy.
-Use `~ ls config/third_keys/` just to be sure now you have all the files there, with and without .example extension.
+Then use `cp config/third_keys/name_file.example config/third_keys/name_file` to get the copy.
+Use `ls config/third_keys/` just to be sure now you have all the files there, with and without .example extension.
 
 
 ### Setup Database
@@ -67,36 +67,36 @@ cp config/sidekiq.yml.example config/sidekiq.yml
 
 Before continue creating the data base, you might get an error creating it due to postgres, to avoid that we are going to install the postgreSQL database and configure a user to manage it, the first thing you must do is configure the repositories lists
 ```
-~ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 
-~ echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list -
+echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list -
 
-~ sudo apt update -
+sudo apt update -
 ```
 
 Once the list of postgreSQL packages is updated we will use the following command to install it
 ```
-~ sudo apt -y install postgresql-12 postgresql-client-12
+sudo apt -y install postgresql-12 postgresql-client-12
 ```
 
 Once postgreSQL is installed, we will enter the session and create from there a new user with the ability to create databases
 ```
-~ sudo -i -u postgres
+sudo -i -u postgres
 
-~ createuser --pwprompt --interactive (enter here the user name with out  () )
+createuser --pwprompt --interactive (enter here the user name with out  () )
 
-~ Enter password for new role: ****** (your password)
+Enter password for new role: ****** (your password)
 
-~ Enter it again: ******
+Enter it again: ******
 
-~ Shall the new role be a superuser? (y/n) y
+Shall the new role be a superuser? (y/n) y
 ```
 
 To exit the postgreSQl session we must use the exit command
 
 After get installed postgres, you got to open Ayenda's repository, go to config/database.yml and set the username & password that you created before for postgres. In the test line too.
 
-Then finaly `~ rails db:create`
+Then finaly `rails db:create`
 
 ### Create Database
 ```
@@ -108,21 +108,21 @@ Before doing migrate & seed to the data base, you might get an error here due to
 
 Redis installation and configuration
 ```
-~ sudo apt update
+sudo apt update
 
-~ sudo apt install redis-server
+sudo apt install redis-server
 ```
 
 This will download and install Redis and its dependencies. After this, there is a major configuration change to be made in the Redis configuration file, generated automatically during installation.
 ```
-~ sudo nano /etc/redis/redis.conf
+sudo nano /etc/redis/redis.conf
 ```
 
 Find the `supervised` directive within the file. This directive allows you to declare an init system to manage Redis as a service, giving you more control over its operation. By default, the value of the `supervised` directive is `no`. Since this is Ubuntu, which uses the init system of systemd, change the value to `systemd`. Then it will be `supervised systemd`
 
 Then restart the Redis service to reflect the changes made to the configuration file:
 ```
-~ sudo systemctl restart redis.servicef
+sudo systemctl restart redis.servicef
 ```
 
 And if everything it's ok, you'll see in Loaded the value of `enabled` and in Active you'll see `active (running)`
@@ -214,7 +214,7 @@ ayenda_web_1     entrypoint.sh bash -c rm - ...   Up      0.0.0.0:3000->3000/tcp
 
 and get in the browser using port 3000: aos.local.co:3000 or pms.local.co:3000
 
-To do this, just run `~ sudo systemctl restart redis.servicef` and add those lines.
+To do this, just run `sudo systemctl restart redis.servicef` and add those lines.
 
 ## "Save Emails and Attachments" chrome complement and Gmail
 We have an integration with "Save Emails and Attachments" and Gmail, every 15 minutes is uploaded to Google Drive all pdf's sent by Rategain, this way we can capture CVV for autocollect reservations.
