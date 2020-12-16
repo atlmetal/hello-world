@@ -81,15 +81,15 @@ Once the list of postgreSQL packages is updated we will use the following comman
 
 Once postgreSQL is installed, we will enter the session and create from there a new user with the ability to create databases
 ```
-`~ sudo -i -u postgres`
+~ sudo -i -u postgres
 
-`~ createuser --pwprompt --interactive (enter here the user name with out  () )`
+~ createuser --pwprompt --interactive (enter here the user name with out  () )
 
-`~ Enter password for new role: ****** (your password)`
+~ Enter password for new role: ****** (your password)
 
-`~ Enter it again: ******`
+~ Enter it again: ******
 
-`~ Shall the new role be a superuser? (y/n) y`
+~ Shall the new role be a superuser? (y/n) y
 ```
 
 To exit the postgreSQl session we must use the exit command
@@ -121,8 +121,9 @@ This will download and install Redis and its dependencies. After this, there is 
 Find the `supervised` directive within the file. This directive allows you to declare an init system to manage Redis as a service, giving you more control over its operation. By default, the value of the `supervised` directive is `no`. Since this is Ubuntu, which uses the init system of systemd, change the value to `systemd`. Then it will be `supervised systemd`
 
 Then restart the Redis service to reflect the changes made to the configuration file:
-
-`~ sudo systemctl restart redis.servicef`
+```
+~ sudo systemctl restart redis.servicef
+```
 
 And if everything it's ok, you'll see in Loaded the value of `enabled` and in Active you'll see `active (running)`
 
