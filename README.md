@@ -72,16 +72,17 @@ Before continue creating the data base, you might get an error creating it due t
 ```
 ~ echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list -
 ```
-Note: lsb_release -cs   is between backtick character, put one before lsb and the other after cs.
-
-`~ sudo apt update -`
+```
+~ sudo apt update -
+```
 
 Once the list of postgreSQL packages is updated we will use the following command to install it
-
-`~ sudo apt -y install postgresql-12 postgresql-client-12`
+```
+~ sudo apt -y install postgresql-12 postgresql-client-12
+```
 
 Once postgreSQL is installed, we will enter the session and create from there a new user with the ability to create databases
-
+```
 `~ sudo -i -u postgres`
 
 `~ createuser --pwprompt --interactive (enter here the user name with out  () )`
@@ -91,6 +92,7 @@ Once postgreSQL is installed, we will enter the session and create from there a 
 `~ Enter it again: ******`
 
 `~ Shall the new role be a superuser? (y/n) y`
+```
 
 To exit the postgreSQl session we must use the exit command
 
@@ -107,15 +109,16 @@ rails db:create
 Before doing migrate & seed to the data base, you might get an error here due to Redis, to avoid this let's install and configurate Redis.
 
 Redis installation and configuration
+```
+~ sudo apt update
 
-`~ sudo apt update`
-
-`~ sudo apt install redis-server`
-
+~ sudo apt install redis-server
+```
 
 This will download and install Redis and its dependencies. After this, there is a major configuration change to be made in the Redis configuration file, generated automatically during installation.
-
-`~ sudo nano /etc/redis/redis.conf`
+```
+~ sudo nano /etc/redis/redis.conf
+```
 
 Find the `supervised` directive within the file. This directive allows you to declare an init system to manage Redis as a service, giving you more control over its operation. By default, the value of the `supervised` directive is `no`. Since this is Ubuntu, which uses the init system of systemd, change the value to `systemd`. Then it will be `supervised systemd`
 
