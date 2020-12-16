@@ -68,11 +68,9 @@ cp config/sidekiq.yml.example config/sidekiq.yml
 Before continue creating the data base, you might get an error creating it due to postgres, to avoid that we are going to install the postgreSQL database and configure a user to manage it, the first thing you must do is configure the repositories lists
 ```
 ~ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-```
-```
+
 ~ echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list -
-```
-```
+
 ~ sudo apt update -
 ```
 
