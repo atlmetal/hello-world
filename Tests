@@ -1,0 +1,14 @@
+scope :search_query, ->(query) {
+    select(:id, :full_name, :email, :country, :address,
+      :phone_id, :'phones.number', :'phones.area_code', :'phones.iso_code',
+      :identification_number, :email).
+    joins(:phone).includes(:phone).
+    where(ActiveRecordExtend.remove_accent('guests.full_name').
+    matches(ActiveRecordExtend.remove_accent("'%#{query}%'"))).
+    # where("lower(full_name) like :query "\
+    #   "OR guests.identification_number like :query "\
+    #   "OR guests.email like :query "\
+    #   "OR phones.number like :query", query: "%#{sanitize_sql_like(query)}%").
+    decorate.
+    uniq { |guest| [guest.phone_id, guest.full_name, guest.email] }
+  }
