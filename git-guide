@@ -1,0 +1,73 @@
+#Git Talk - Productive commands
+
+😉Add an specific file: git add [filename]
+
+👌 Move some commit to a separate branch:
+
+git log
+Check or search the commit-hash
+git reset --hard [commit-hash]
+git checkout -b [new-branch-name]
+git add .
+git commit -m "[Your message here]"
+⚠️Push a rebased local branch: git push -f
+
+💅Polish my feature before submitting for review: git rebase -i [branch-name/commit hash]
+
+🍡Squash all commits into a single one and merge it into develop:
+
+Go to your main branch (eg. develop) : git checkout develop
+git merge --squash [branch-name]
+git commit
+Add your commit's message
+🚀 Git time-machine to undo something terrible 💥😱
+
+git reflog
+Search for all the index HEAD@{index} and search for the command just before everything crashed
+git reset HEAD@{index}
+😅Ups, I Just made a commit and forget to add a little change:
+
+git add .
+git commit --amend --no-edit
+😅Ups, I need to change my last commit's message: git commit --amend
+
+🙈Holly Crap! I just pushed to the wrong branch🏃💨
+
+Undo the last commit, but let the changes availables: git reset HEAD~ --soft
+git stash
+Move to the correct branch: git checkout [branchname]
+git stash pop
+git add .
+git commit -m "Your message here"
+Or using cherry-pick:
+
+git checkout [correct-branch-name]
+Get the last commit from master: git cherry-pick master
+git checkout master
+Delete the lat commit from master: git reset HEAD~ --hard
+↩️ 🙏 Yisus Craist! I need to undo a commit:
+
+Search for the commit and save its hash: git log
+git revert [commit-hash]
+💩 Oh mai Gudness, I need to undo the changes of an specific file:
+
+Search for the hash of the previous commit when the file was modified: git log
+git checkout [commit-hash] --path/to/file
+git commit -m "New message"
+🎨Enchulanding git: git config --global -e and add any command or commands you based on your preference. Just like the example:
+
+lg = log
+ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate date=short
+ec = config --global -e
+co = checkout
+br = branch
+cm = commit -am
+st = status
+cp = cherry-pick
+save = !git add -A && git commit -m 'SAVEPOINT'
+wip = commit -am "WIP"
+undo = reset HEAD~1 --mixed
+amend = commit -a --amend
+Note⚠️ : Commands like git reset or git ammend change the commit id/hash
