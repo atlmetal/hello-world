@@ -29,3 +29,29 @@ Del   app/javascript/packs/admin_form/        index.js
                 @currency_settings = Rules.currencies[@hotel.currency]
                 
                 Entre el   ) y el ELSE
+
+    
+    
+    
+    
+    Del index se habia hecho esto y luesgo del feedback Esteban lo replanteo con lo de arriba
+    
+        // form.addEventListener('click', ({ target }) => {
+    //   if (target.classList.contains('remove-ayenda-cash') || target.parentNode.classList.contains('remove-ayenda-cash')) {
+    //     console.log("Hola mundo 3.0")
+    //     const usedAyendaCash = document.getElementById('used-ayenda-cash')
+    //     usedAyendaCash.value = false
+    //     const ayendaCashForm = document.getElementById('ayenda_cash_form')
+    //     ayendaCashForm.style.display = "none";
+    //   }
+    // });
+
+    // form.addEventListener('click', ({ target }) => {
+    //   if (target.classList.contains('active-ayenda-cash') || target.parentNode.classList.contains('active-ayenda-cash')) {
+    //     console.log("Hola mundo 4.0")
+    //     const usedAyendaCash = document.getElementById('used-ayenda-cash')
+    //     usedAyendaCash.value = false
+    //     const ayendaCashForm = document.getElementById('ayenda_cash_form')
+    //     ayendaCashForm.style.display = "none";
+    //   }
+    // });
