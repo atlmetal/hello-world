@@ -21,3 +21,11 @@ Del   app/javascript/packs/admin_form/        index.js
               if reservations.ayenda_cash_used
               #eliminar los descuenots de ayenda cash (esto es els codigo a revisar del servicio como base)
     ::Reservations::CalculateAndAssignValuesService.call(@reservation)
+
+                
+ Del       /app/controllers/reservations_controller.rb
+                
+     Se arregla cagada de Juanfer 
+                @currency_settings = Rules.currencies[@hotel.currency]
+                
+                Entre el   ) y el ELSE
