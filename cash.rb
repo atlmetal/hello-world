@@ -55,3 +55,24 @@ Del   app/javascript/packs/admin_form/        index.js
     //     ayendaCashForm.style.display = "none";
     //   }
     // });
+
+    
+    
+    
+    
+
+
+
+
+
+# Esto esta en el reservations_controller en las lineas 235 a 237 (Despues del servicio RemoveAyendaCashDiscounts))
+# Y antes del servicio CalculateAndAssignValuesService
+
+# if valid_for_remove_ayenda_cash_discount?
+#   @reservation.reservation_discounts.ayenda_cash.destroy_all
+# end
+
+# def valid_for_remove_ayenda_cash_discount?
+#   !@reservation.ayenda_cash_used? && @reservation.reservation_discounts.ayenda_cash.any? &&
+#     @reservation.valid?
+# end
