@@ -1,0 +1,510 @@
+app/assets/stylesheets/extranet/application.scss
+
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'bootstrap-toggle';
+@import 'bootstrap-datetimepicker';
+@import 'bootstrap-datepicker3';
+@import 'daterangepicker';
+@import 'font-awesome';
+@import 'flag-icon';
+@import 'all/AdminLTE';
+@import 'all/_all-skins';
+@import 'fullcalendar';
+@import 'fullcalendar/scheduler';
+@import 'all/bootstrap-editable.min';
+@import 'all/reservations';
+@import 'all/waitMe.min';
+@import 'select2';
+@import 'select2-bootstrap';
+@import 'sweetalert2';
+@import 'caleran/caleran.min';
+@import 'caleran/custom';
+@import 'dataTables/bootstrap/3/jquery.dataTables.bootstrap';
+@import 'intlTelInput';
+@import 'reports';
+@import 'hotel_repairs';
+@import 'reservations';
+@import './intlTelInput_flags';
+@import './box_ajax_gif';
+@import 'alegra_account_form';
+@import 'ayenda_score';
+@import 'check_in_info';
+@import "pdf-format";
+@import 'dynamic_prices';
+@import 'user_profile';
+@import 'promotions';
+@import 'similar_bookings';
+@import 'hotels_filter';
+@import 'admin_reservations';
+@import 'min_max_rate_config';
+@import './select2-bootstrap';
+@import 'calendar';
+@import 'inventory_risk';
+@import 'website_slide_photos';
+@import 'promotion_days';
+@import 'historical';
+@import 'rooms';
+@import 'quotations';
+@import 'admin/crm/phones';
+@import 'admin/hotels/show';
+@import 'booking_payment';
+@import 'booking_room_check_in';
+@import 'stocks';
+@import 'settlement';
+@import 'stock_movements';
+@import 'reports/cash_register_closure';
+@import 'admin/reservations/show';
+@import 'reservation_sources';
+@import 'credit_card_payments';
+@import 'admin/workspace/home';
+@import 'admin/reservations/transitions';
+@import 'admin/ops/storage';
+@import 'admin/ops/storage';
+@import 'admin/revenues/advance_payments';
+
+.health-indicator {
+  display: inline-block;
+  border: 1px solid #000;
+  border-radius: 4px;
+  -webkit-transition: border 0.2s ease-in-out;
+  -o-transition: border 0.2s ease-in-out;
+  transition: border 0.2s ease-in-out;
+  padding: 4px 8px;
+
+  @media (max-width: 768px) {
+    display: block;
+    text-align: center;
+  }
+}
+
+.new_booking_payment {
+  margin-right: 10px;
+  margin-top: -68px;
+
+  @media (max-width:768px) {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.call-center-link {
+  position: fixed;
+  bottom: 20px;
+  right: 65px;
+  z-index: 9999;
+}
+
+.add-room-button {
+  position: fixed;
+  bottom: 20px;
+  right: 76.6%;
+  z-index: 9999;
+}
+
+.danger-input {
+  border-color: #ff7c7c !important;
+}
+
+#coupon_code {
+  text-transform: uppercase;
+}
+
+.radio-buttons-floor {
+  .radio {
+    position: relative;
+    display: inline-block;
+    padding-left: 10px;
+    margin-bottom: 0;
+    font-weight: normal;
+    cursor: pointer;
+    margin-top: 0px;
+  }
+}
+
+#hotel_reservation_notes_list {
+  max-height: 300px;
+  overflow: scroll;
+}
+
+a.extranet-fc-timeline-event {
+  border-color: transparent;
+  bottom: 0px;
+  border-radius: 0px;
+
+  .fc-content {
+    margin-top: 5px;
+  }
+}
+
+#modal_change_room, #modal_change_price, #modal_change_channel_availability {
+  .modal-dialog {
+    margin: 20vh auto 0px auto;
+
+    @media (max-width:768px) {
+      margin: 25vh auto 0px auto;
+    }
+  }
+}
+
+.editable-link {
+  border-bottom: none !important;
+}
+
+.box-ajax-gif {
+  background-color: rgba(255,255,255,0.8);
+  position: absolute;
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  z-index: 10005;
+  text-align: center;
+  padding-top: 7%;
+}
+
+.filter_reservations a i {
+  margin: 10px;
+}
+
+.form-input{
+  margin-bottom: 10px;
+  padding: 0 0 0 20px;
+}
+
+.align-right{
+  text-align: right;
+}
+
+.highlighted {
+  background-color: #28E288 !important;
+}
+
+.toggle-button-container {
+  margin-top: 5px;
+}
+
+.info-bar {
+  padding: 10px;
+  border-radius: 0px;
+}
+
+.icon-success {
+  color: #0066cc;
+}
+
+.icon-danger {
+  color: #e60000;
+}
+
+.icon-room {
+  color: #33ccff;
+}
+
+.modal-backdrop{
+  z-index: -1;
+}
+
+.deleted_item{
+  background-color:#D3D3D3 !important ;
+}
+
+.mb-20{margin-bottom: 20px;}
+.box-100por{width: 100%;}
+
+.badge-black {
+  background-color: #050202;
+}
+
+.btn-remove-photo {
+  margin-top: 20%;
+}
+
+.fc-title i {
+  margin-right: 5px;
+}
+
+.text-toggle_setting {
+  padding-top: 10px;
+}
+
+.bg-aqua2 {
+  background-color: #02a9d2;
+  color: #fff;
+}
+
+.bg-yellow2 {
+  background-color: #ce8209;
+  color: #fff;
+}
+
+.bg-green2 {
+  background-color: #02864a;
+  color: #fff;
+}
+
+.nav-tabs-custom#reservations {
+  small.label {
+    margin-left: 3px;
+  }
+}
+
+div.dataTables_processing {
+  height: 200px;
+  padding-top: 66px;
+  padding-bottom: 66px;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 13px 13px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+
+.reservation-controls {
+  margin-top: 10px;
+  text-align: right;
+
+  @media (max-width: 767px) {
+    text-align: center;
+  }
+}
+
+.select-options-rate-categories {
+  text-align-last:center;
+}
+
+.input-addon {
+  border-radius: 0 !important;
+  box-shadow: none;
+  border-color: #d2d6de;
+}
+
+.past-day-background {
+  background-color: #d8d8d8
+}
+
+.fa-red {
+  color: #cf5542;
+}
+
+.fa-orange {
+  color: #e99f3c;
+}
+
+.fa-green {
+  color: #28E288;
+}
+
+.fa-black {
+  color: #fff;
+}
+
+.plus-minus-container {
+  display: inline-flex;
+
+  a {
+    background-color: #e6e6e6;
+  }
+
+  .quantity {
+    width: 42px;
+    border-radius: 0px;
+    text-align: right;
+    padding: 0;
+  }
+
+  .minus {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .plus {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  @media(max-width:768px) {
+    .quantity {
+      text-align: center;
+    }
+  }
+}
+
+.modal-extranet {
+  .modal-body {
+    background-color: #FAFAFA;
+
+    input[type='checkbox'] {
+      margin: 5px;
+    }
+  }
+}
+
+.no-border {
+  border: none;
+}
+
+.fc-widget-content {
+  cursor: pointer;
+}
+
+.intl-tel-input { width: 100%; }
+
+/* Fix when intl-tel-input is into bootstrap table */
+.intl-tel-input .selected-flag .iti-flag {
+  margin-left: 4px;
+}
+
+.without-padding-sides {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.repair-counter {
+  background-color: #28E288;
+  display: inline-block;
+  color: black;
+  border-radius: 50%;
+  font-size: 14px;
+  width: 22px;
+  height: 22px;
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.repair-counter-danger {
+  background-color: #dc3545;
+}
+
+.badge-success {
+  background-color: #468847;
+}
+
+.badge-success:hover {
+  background-color: #356635;
+}
+
+.counter-number {
+  margin-right: 1px;
+  font-size: 11px;
+}
+
+.ayenda-rooms-green-color {
+  color: #005A5A;
+}
+
+#hotel-name {
+  display: inline-block;
+}
+
+.hotel-regime {
+  margin: 2px 2% 0 0;
+}
+
+.hotel-ayenda-score {
+  float: right;
+  margin: 2px 2% 0 0;
+  font-size: 14px;
+}
+
+#hotels-search-button {
+  margin-top: 24px;
+}
+
+.hotel-datatable-button {
+  margin-right: 5px;
+}
+
+#modal_dynamic_price_variation {
+  .input-radio {
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 30px;
+  }
+
+  input[type=radio] {
+    display: none;
+  }
+
+  input[type=radio] + label {
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+
+  input[type=radio] + label:hover {
+    border: 1px solid rgb(26, 26, 170);
+  }
+
+  input[type=radio]:checked + label {
+    border: 1px solid rgb(26, 26, 170);
+  }
+}
+
+.rooms-container td>input.form-control {
+  width: 7em;
+  margin-left: -2em;
+}
+
+.clickable-info > i {
+  font-size: 20px;
+}
+
+.title > .clickable-info {
+  position: relative;
+  top: -3em;
+}
+
+.box-body.no-padding > a.clickable-info {
+  position: absolute;
+  right: 1.5em;
+}
+
+.breadcrum-elements {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  display: inline-block;
+}
+
+.clickable-info {
+  position: relative;
+  top: 0.4em;
+  right: 0.5em;
+}
+
+.with-vertical-padding {
+  padding-top: .5%;
+  padding-bottom: .5%;
+}
+
+.bottom-divider {
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid #95989c;
+
+  .info-tab {
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+  }
+}
+
+.nav-pills > li > a {
+  border-radius: 4px;
+}
+
+.resident-submit {
+  box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.5);
+}
