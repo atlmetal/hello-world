@@ -1,0 +1,375 @@
+app/assets/stylesheets/extranet/admin/hotels/show.scss
+
+.container-amenities {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  text-align: justify;
+  background: #D1E1E1;
+
+  .checkbox-inline{
+    display: inline-block;
+    .checkbox {
+      margin-left: auto;
+      margin-top: 8px;
+    }
+  }
+}
+
+.ayenda-rooms-show #photos {
+  .room-types-container {
+    margin-top: 15px;
+  }
+
+  .input-hotel-photo {
+    display: flex;
+    height: 130px;
+    margin-bottom: 30px;
+    box-shadow: 0px 0px 10px 1px #f5eded;
+    grid-gap: 5px;
+
+    .remove-photos-container {
+      display: flex;
+      justify-content: center;
+
+      .options-photo {
+        display: flex;
+        justify-content: center;
+
+        .trash-can-photo {
+          margin: auto;
+          font-size: 40px;
+          color: red;
+        }
+
+        .main-photo {
+          font-size: 40px;
+        }
+      }
+    }
+  }
+
+  input[type="radio"] {
+    -webkit-appearance: none;
+  }
+
+  .icon-star {
+    color: #CCFF00;
+    font-size: 30px;
+  }
+
+  .icon-trash {
+    font-size: 30px;
+    color: red;
+    margin-left: 15px;
+  }
+}
+
+#room_types {
+  .form-group {
+    display: block;
+    margin: 10px;
+
+    .row {
+      margin: 0px;
+
+      label {
+        padding: 5px;
+        font-size: 16px;
+      }
+    }
+
+    .first-row {
+      background-color: #005A5A;
+
+      .room_type_id{
+        width: 20%;
+        background-color: lightgray;
+      }
+      label {
+        color: white;
+      }
+    }
+
+    .second-row {
+      background-color: #373A3604;
+
+      input {
+        width: 30%;
+        margin: 0;
+      }
+
+      .col-md-2 {
+        padding: 0;
+      }
+    }
+
+    .third-row {
+      margin-top: 30px;
+      margin-left: 30px;
+
+      .col-xs-2 {
+        padding: 0;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      .panel {
+        padding: 0;
+        border: 1px solid #373A364D;
+
+        label{
+          color: #28E288;
+          padding-top: 0;
+        }
+      }
+
+      .carousel {
+        margin: 10px;
+
+        .image-preview {
+          height: 100px;
+        }
+
+        .img-responsive {
+          object-fit: cover;
+          height: 100px;
+          width: 100%;
+        }
+
+
+        .btn-remove-photo {
+          position: absolute;
+          right: 0px;
+          top: 0px;
+          margin: 0;
+          padding: 0;
+          font-size: 12px;
+        }
+      }
+
+      .carousel-control {
+        width: 4%;
+        background-image: none;
+        display: none;
+      }
+
+      .carousel-control > .fa {
+        left: 10px;
+      }
+
+      @media (max-width: 767px) {
+        .carousel-inner .active.left {
+            left: -100%;
+        }
+
+        .carousel-inner .next {
+            left: 100%;
+        }
+
+        .carousel-inner .prev {
+            left: -100%;
+        }
+
+        .active>div {
+            display: none;
+        }
+
+        .active>div:first-child {
+            display: block;
+        }
+      }
+
+      @media (min-width: 767px) and (max-width: 992px) {
+        .carousel-inner .active.left {
+            left: -50%;
+        }
+
+        .carousel-inner .next {
+            left: 50%;
+        }
+
+        .carousel-inner .prev {
+            left: -50%;
+        }
+
+        .active>div {
+            display: none;
+        }
+
+        .active>div:first-child {
+            display: block;
+        }
+
+        .active>div:first-child+div {
+            display: block;
+        }
+      }
+
+      @media (min-width: 992px) {
+        .carousel-inner .active.left {
+            left: -25%;
+        }
+
+        .carousel-inner .next {
+            left: 25%;
+        }
+
+        .carousel-inner .prev {
+            left: -25%;
+        }
+      }
+    }
+
+    .hotel_room_types_description {
+      padding: 5px;
+
+      textarea {
+        width: 100%;
+        border: 0px;
+      }
+    }
+  }
+}
+
+#room_accommodations {
+  .form-group {
+    display: block;
+    padding: 20px;
+
+    .row {
+      margin: 0px;
+
+      label {
+        padding: 5px;
+        font-size: 16px;
+      }
+
+      .section-title {
+        color: white;
+      }
+    }
+
+    .first-row {
+      background-color: #005A5A;
+
+    }
+
+    .scores {
+      display: grid;
+      grid-template-columns: 1fr 0.5fr;
+      gap: 1em;
+
+      label {
+        width: 70%;
+        text-align: right;
+      }
+
+      select {
+        width: 30%;
+      }
+
+      .container_quality{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        //background: red; // Change Color :*
+      }
+
+      .quality_observations{
+        padding-top: 20px;
+
+        .card{
+          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.12);
+          width: 100%;
+          border-radius: 5px;
+          margin-bottom: 5px;
+        }
+
+        .message_observation{
+          padding: 5px;
+
+          .hotel_room_types_rooms_observations{
+            padding: 0;
+          }
+
+          i{
+            font-size: 50px;
+            color: green //Change Color
+          }
+        }
+
+        .input_observation{
+          padding: 0;
+
+          textarea {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .second-row {
+      /*display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));*/
+      ext-align: justify;
+      background-color: #D1E1E1;
+
+      .form-control {
+        width: 100%;
+      }
+
+
+      input {
+        width: 30%;
+        margin: 0;
+      }
+
+      .col-md-2 {
+        padding: 0;
+      }
+*
+      .container-quality {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(10px, 20px));
+        text-align: justify;
+
+        .form-control {
+          width: 100%;
+        }
+      }
+    }
+
+    .third-row {
+      .col-sm-12{
+        display: inline-flex;
+      }
+    }
+  }
+
+  .container_acommodations{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    .acommodation_item{
+      .form-control{
+        width: 50%;
+      }
+    }
+  }
+
+  .container_acommodations2{
+    display: grid;
+    text-align: justify;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1.5fr;
+    .acommodation_item{
+      .form-control{
+        width: 50%;
+      }
+    }
+  }
+
+  .container-add_button{
+    margin-top: 20px;
+  }
+
+  .hide_extra_bed{
+    /* clase creada para dar funcionalidad de hide al jQuery */
+  }
