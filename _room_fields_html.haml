@@ -1,0 +1,99 @@
+app/views/admin/hotels/_room_fields.html.haml
+
+.nested-fields
+  .box.box-solid
+    .box-body
+      .container-fluid
+        .row.first-row
+          .col-lg-2.section-title
+            %h3 Room
+        .second-row.container_acommodations2
+          .acommodation_item
+            = f.input :name, label: 'Room #'
+          .acommodation_item
+            = f.association :room_type, collection: @room_types
+          .acommodation_item
+            = f.input :online_sell, label: 'Sellabe', collection: [true, false]
+          .acommodation_item
+            = f.input :area, label: 'Area(m2)', label_html: { class: 'sup' }
+          .acommodation_item
+            = f.input :floor
+          .acommodation_item
+            = f.input :minimum_rate
+        .row.first-row
+          .col-lg-6.section-title
+            %h3 Bed
+          .col-lg-2.section-title
+            %h3 Extra bed
+        .second-row.container_acommodations
+          .acommodation_item
+            = f.association :accommodations, label:'Bed type', input_html: { multiple: false}, include_blank: false
+          .acommodation_item
+            %div.form-group.integer.accommodation_quantity
+              %label.control-label.integer Quantity
+              %input.form-control.integer
+          .acommodation_item.container-add_button
+            = link_to_add_association 'Add', f, :room_accommodations,
+              class: 'btn  btn-default room-accommodation-btn',
+              'data-association-insertion-node': '#room_accommodations_form',
+              'data-association-insertion-method': 'append'
+          .acommodation_item
+            .form-group.select.optional.hotel_room_types_rooms_accommodations
+              %label.control-label.select.optional Extra Bed
+              = select_tag :accommodations_type, options_for_select([['Yes', true], ['No', false]]), class: 'form-control'
+          .acommodation_item.hide_extra_bed
+            = f.association :accommodations, label: 'Bed type', input_html: {id:'bed-type-id', multiple: false}, include_blank: false
+          .acommodation_item.hide_extra_bed
+            %div.form-group.integer.accommodation_quantity
+              %label.control-label.integer Quantity
+              %input.form-control.integer#quantity-id
+          .acommodation_item.container-add_button
+            = link_to_add_association 'Add', f, :room_accommodations,
+              class: 'btn  btn-default room-accommodation-btn',
+              'data-association-insertion-node': '#room_accommodations_form',
+              'data-association-insertion-method': 'append'
+        .row.third-row.vertical-center#room_accommodations_form
+          .col-sm-12
+            = f.simple_fields_for :room_accommodations do |ra|
+              = render 'room_accommodation_fields', f: ra
+        .row.first-row
+          .col-lg-2.section-title
+            %h3 Amenities
+        .row
+          .container-amenities.col-sm-12
+            = f.collection_check_boxes :amenities, @room_amenities, :id, :name,
+              checked: f.object.amenities, item_wrapper_class: 'checkbox-inline' do |ch|
+              = ch.label
+              = ch.check_box(class: 'checkbox')
+          .col-sm-12= link_to_remove_association 'Remove', f, class: 'btn btn-danger pull-right'
+
+        .row.first-row
+          .col-lg-2.section-title
+            %h3 Quality
+        .row
+          .scores
+            - scores = f.object.scores
+            = f.simple_fields_for :scores do |sf|
+              .container_quality
+                .quality_item
+                  = sf.input :bathroom, label: 'Bathroom', collection: [['1: El baño no es privado o no se encuentra en condiciones apropiadas', 1], ['3: El baño es externo pero privado y/o tiene oportunidades de mejora', 3],['5: El baño es independiente y se encuentra en buen estado', 5]]
+                .quality_item
+                  = sf.input :blankets, label: 'Blankets', collection: [['1: Falta al menos dos o se encuentran en mal estado', 1], ['3: Las sábanas podrían mejorar o falta uno de estos ítems', 3],['5: Las camas cuentan con protector de colchón, sábanas planas blancas y sábanas ajustables blancas.', 5]]
+                .quality_item
+                  = sf.input :electricity, label: 'Electricity', collection: [['1: No tiene energía eléctrica', 1], ['3: Tiene energía eléctrica pero no tiene un toma corriente funcional o no alcanza para alimentar el TV o el AC/Ventilador', 3],['5: La habitación tiene energía eléctrica: puede alimentar todos los electrodomésticos en ella y tiene al menos un toma corriente funcional', 5]]
+                .quality_item
+                  = sf.input :mattress, label: 'Mattress', collection: [['1: Tiene espuma o el colchón no está en buen estado', 1], ['3: El colchón no es moderno pero está en buen estado', 3],['5: El colchón es moderno y se encuentra en buen estado', 5]]
+                .quality_item
+                  = sf.input :paint, label: 'Paint', collection: [['1: La pintura está en muy mal estado', 1], ['3: La habitación puede salir al aire pero lo mejor es pintarla', 3],['5: Pintura en buen estado', 5]]
+                .quality_item
+                  = sf.input :tv, label: 'TV', collection: [['1: No tiene TV', 1], ['3: TV antiguo funcional', 3], ['5: TV plano funcional', 5]]
+                .quality_item
+                  = sf.input :water, label: 'Water', collection: [['1: No sale agua o el desagüe no funciona correctamente', 1], ['5: Agua corriente y con desagüe funcionando correctamente', 5]]
+                .quality_item
+                  = sf.input :overall_state, label: 'Overall State', collection: [['1: Lo contrario', 1], ['5: Se encuentra visiblemente sin humedades, pintada, resanada, techo sin perforaciones ni gotas, piso igual al del hotel o al del resto de habitaciones.', 5]]
+            .quality_observations
+              .card.message_observation
+                %i.fa.fa-exclamation-circle#basic-addon
+                %span Hola
+              .card.input_observation
+                = f.input :observations, label: false, placeholder: 'Escribe aquí...'
