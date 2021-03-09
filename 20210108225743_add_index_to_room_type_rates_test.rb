@@ -1,9 +1,0 @@
-/home/mateo/Ayenda/ayenda/db/migrate/20210108225743_add_index_to_room_type_rates_test.rb
-
-class AddIndexToRoomTypeRatesTest < ActiveRecord::Migration[6.0]
-  def change
-    add_index :room_type_rates, [:client_type, :room_type, :date, :person_number, :kind], unique: true,
-          name: :index_rates_room_type_test_date_person_number_kind
-  end
-end
-
