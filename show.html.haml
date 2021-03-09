@@ -1,0 +1,321 @@
+app/views/admin/hotels/show.html.haml
+
+.ayenda-rooms-show{ data: { neighborhood_id: @hotel.neighborhood_id } }
+  = simple_form_for @hotel, url: admin_hotel_path(@hotel), html: { multipart: true } do |f|
+    = render 'shared/error_message_notify', model: @hotel
+
+    %section.content
+      .row
+        .col-md-12
+          = hotel_progress_bar(@hotel.settings_progress['overall_progress'])
+          .row-fluid.row-box
+            .col-sm-12
+              %ul.nav.nav-tabs{role: "tablist"}
+                %li.nav-item.active
+                  %a.nav-link.active{"data-toggle" => "tab", :href => "#info", role: "tab"}
+                    Information
+                    = hotel_progress_badge(@hotel.settings_progress['information_progress'])
+                %li.nav-item
+                  %a.nav-link{"data-toggle" => "tab", :href => "#amenities", role: "tab"}
+                    Amenities
+                    = hotel_progress_badge(@hotel.settings_progress['amenities_progress'])
+                %li.nav-item
+                  %a.nav-link{"data-toggle" => "tab", :href => "#photos", role: "tab"}
+                    Photos
+                    = hotel_progress_badge(@hotel.settings_progress['photos_progress'])
+                %li.nav-item
+                  %a.nav-link{"data-toggle" => "tab", :href => "#room_types", role: "tab"} Room Types
+                %li.nav-item
+                  %a.nav-link{"data-toggle" => "tab", :href => "#hotel_points", role: "tab"}
+                    Points
+                    = hotel_progress_badge(@hotel.settings_progress['points_progress'])
+                %li.nav-item
+                  %a.nav-link{"data-toggle" => "tab", :href => "#payments", role: "tab"} Payments
+                %li.nav-item
+                  %a.nav-link{"data-toggle" => "tab", :href => "#billing", role: "tab"}
+                    Profile
+                    = hotel_progress_badge(@hotel.settings_progress['profile_progress'])
+                %li.nav-item
+                  %a.nav-link{"data-toggle" => "tab", :href => "#channel_manager", role: "tab"}
+                    Channel Manager
+                    = hotel_progress_badge(@hotel.settings_progress['channel_manager_progress'])
+                %li.nav-item
+                  %a.nav-link{"data-toggle" => "tab", :href => "#room_accommodations", role: "tab"}
+                    Accomodations
+                    = hotel_progress_badge(@hotel.settings_progress['accommodations_progress'])
+                %li.nav-item
+                  %a.nav-link{"data-toggle" => "tab", :href => "#integrations", role: "tab"}
+                    Integrations
+                    = hotel_progress_badge(@hotel.settings_progress['integrations_progress'])
+                %li.nav-item
+                  %a.nav-link{"data-toggle" => "tab", :href => "#users", role: "tab"}
+                    Users
+
+              .tab-content
+                #info.tab-pane.active{role: "tabpanel"}
+                  = hotel_progress_bar_with_info(@hotel.settings_progress['information_progress'],
+                    'Deben estar llenos los siguientes campos Name, Kind, City, Description, Google maps address, Latitude, Longitude, Place ID, Image Map, Reviews')
+
+                  .col-sm-12
+                    %h3.box-title= @hotel.name
+
+                  .col-sm-12
+                    %label Status:
+                    = editable_link(@hotel, :sale_status, '', 'select')
+
+                    = link_to 'Go to calendar', admin_calendars_path(id: @hotel), class: 'btn btn-primary btn-md pull-right'
+
+                  .col-sm-4
+                    %h5 ID
+                    = f.text_field :id, class: 'form-control', disabled: true
+
+                  .col-sm-4
+                    %h5 Name
+                    = f.text_field :name, class: 'form-control'
+
+                  .col-sm-4
+                    %h5 URL Name
+                    = f.text_field :slug, class: 'form-control', disabled: true
+
+                  .col-sm-4
+                    %h5 Barrio
+
+                    = f.association :neighborhood, collection: @neighborhoods, label: false, include_blank: false, label_method: :city_name, input_html: { class: 'select2-hotels-show' }
+
+                  .col-sm-4
+                    %h5 Currency
+                    = f.input :currency, label: false, collection: Rules.available_currencies
+
+                  .col-sm-12
+                    %h5 Description
+
+                    = text_area_tag '', simple_format(@hotel.description), class: 'form-control', required: false, rows: 4
+
+                  .col-sm-12
+                    %h3.box-title Location
+
+                  .col-sm-12.col-lg-6
+                    .form-group
+                      %h5 Google maps address
+                      %em Example: https://www.google.com/maps/dir//[hotel]
+                      = text_field_tag 'booking_engine[distribution_settings][location][google_maps]', @booking_engine.location['google_maps'], class: 'form-control'
+
+                  .col-sm-12.col-lg-3
+                    .form-group
+                      %h5 Latitude
+                      = f.text_field :latitude, class: 'form-control'
+
+                  .col-sm-12.col-lg-3
+                    .form-group
+                      %h5 Longitude
+                      = f.text_field :longitude, class: 'form-control'
+
+                  .col-sm-12
+                    %h5 Image Map
+                    = image_tag @hotel.maps.variant(resize: '100x100') if @hotel.maps.attached?
+                    = f.file_field :maps, class: 'form-control filestyle', 'data-buttonText': t('views.settings.invoices.select_file'), 'data-input': 'false', required: false, accept: 'image/png,image/jpeg'
+
+                  .col-sm-12
+                    %h3.box-title My Business
+
+                  .col-sm-12.col-lg-6
+                    .form-group
+                      %h5 Place ID
+                      = f.text_field :place_id, class: 'form-control'
+
+                  .col-sm-12.col-lg-12
+                    - if @hotel.place_id.present?
+                      = link_to(fa_icon('refresh') + ' Reload My Business Info', reload_my_business_info_admin_hotel_path(@hotel.friendly_id), class: 'btn btn-default reload-my-business-info', remote: true)
+                    - else
+                      = link_to(fa_icon('refresh') + ' Requires Place ID to reload My Business info', '#', class: 'btn btn-default reload-my-business-info-disabled', disabled: true)
+                  .col-sm-12.col-lg-6
+                    .form-group
+                      %h5 Name
+                      = f.text_field :my_business_name, class: 'form-control', disabled: true
+
+                  .col-sm-12.col-lg-6
+                    .form-group
+                      %h5 URL
+                      = f.text_field :my_business_url, class: 'form-control', disabled: true
+
+                #amenities.tab-pane{role: "tabpanel"}
+                  = hotel_progress_bar_with_info(@hotel.settings_progress['amenities_progress'], 'Deben haber almenos 5 amenidades seleccionadas')
+                  %br
+                  - @amenities.each do |amenity|
+                    .col-sm-6.col-lg-2
+                      .form-group
+                        = label_tag "amenity_#{amenity.name.parameterize}", t("views.booking_engine.settings.otas.#{amenity.name}")
+                        = check_box_tag("hotel[amenity_ids][]", amenity.id, @amenities_ids.include?(amenity.id), id: "amenity_#{amenity.name.parameterize}")
+
+                #photos.tab-pane{role: "tabpanel"}
+                  = hotel_progress_bar_with_info(@hotel.settings_progress['photos_progress'], 'Deben haber almenos 10 fotos creadas')
+                  %br
+                  .col-sm-12
+                    = f.fields_for :hotel_photos, @photos, include_id: false do |hotel_photo|
+                      .col-sm-4{ class: "nested-fields#{(hotel_photo.object.new_record? ? ' disable-sort' : '')} input-hotel-photo" }
+                        = render 'hotel_photo_fields', f: hotel_photo
+
+                  - if @current_photos_size < 12
+                    .col-sm-4
+                      .many-photos{style: 'margin-bottom: 60px; padding: 15px;'}
+                        = file_field_tag 'massive_photos[]', "data-input" => "false", class: "form-control hotel-massive-photos filestyle", required: false, accept: "image/png,image/jpeg", multiple: true, "data-buttonText" => "Add photos", "data-buttonName" => "btn-primary"
+
+                  .col-sm-12
+                    %i.fa.fa-fw.fa-lg.fa-star.icon-star
+                    %b Main photo
+                    %i.fa.fa-trash.icon-trash
+                    %b Remove
+
+                #room_types.tab-pane{role: "tabpanel"}
+                  .col-sm-12
+                    .form-inline
+                      .form-group
+                        = f.fields_for :room_types, @room_types do |room_type_form|
+                          = render 'hotel_room_type_fields', f: room_type_form
+
+                #hotel_points.tab-pane{role: "tabpanel"}
+                  = hotel_progress_bar_with_info(@hotel.settings_progress['points_progress'], 'Deben haber almenos 5 puntos seleccionados, Además 1 Aeropuerto y 1 Terminal')
+                  %br
+                  = f.fields_for :hotel_points do |hotel_point_form|
+                    .col-sm-6.col-lg-4
+                      .form-group
+                        - hotel_point = hotel_point_form.object
+                        = hotel_point_form.hidden_field :point_id
+                        = hotel_point_form.label :_destroy, hotel_point.point.name
+                        = hotel_point_form.check_box :_destroy, {checked: hotel_point.persisted?}, 0, 1
+                #payments.tab-pane{role: "tabpanel"}
+                  %br
+                  - @payments.each do |payment|
+                    .col-sm-6.col-lg-2
+                      .form-group
+                        = label_tag "payment_#{payment}", payment
+                        = check_box_tag("booking_engine[distribution_settings][payments][]", payment, @booking_engine.payments_kind.include?(payment.to_s), id: "payment_#{payment}")
+
+                #billing.tab-pane{role: "tabpanel"}
+                  = hotel_progress_bar_with_info(@hotel.settings_progress['profile_progress'],
+                    'Deben estar llenos los siguientes campos Person type, Document type, Person name, Document, Address, Email, Phone')
+                  %br
+                  = f.fields_for :hotel_profile, build_has_one_association(@hotel, :hotel_profile) do |hotel_profile_fields|
+                    .col-sm-3
+                      .form-group
+                        = hotel_profile_fields.input :biosafety_certificate
+                    .col-sm-6.col-lg-2
+                      .form-group
+                        = label_tag 'Person Type'
+                        = hotel_profile_fields.select :person_type, options_for_select(@person_types, hotel_profile_fields.object.person_type), {}, { class: 'form-control' }
+
+                    .col-sm-6.col-lg-2
+                      .form-group
+                        = label_tag 'Document Type'
+                        = hotel_profile_fields.select :document_type, options_for_select(@document_types, hotel_profile_fields.object.document_type), {}, { class: 'form-control' }
+
+                    .col-sm-6.col-lg-2
+                      .form-group
+                        = label_tag 'Tax'
+                        = hotel_profile_fields.select :tax_id, options_from_collection_for_select(@taxes, :id, :name, hotel_profile_fields.object.tax_id), {}, { class: 'form-control' }
+                    .col-sm-6.col-lg-3
+                      .form-group
+                        = label_tag 'Person Name'
+                        = hotel_profile_fields.text_field :person_name, class: 'form-control'
+                    .col-sm-6.col-lg-3
+                      .form-group
+                        = label_tag 'Document'
+                        = hotel_profile_fields.text_field :document , class: 'form-control'
+
+                    .col-sm-6.col-lg-4
+                      .form-group
+                        = label_tag 'Address'
+                        = hotel_profile_fields.text_field :address,  class: 'form-control'
+
+                    .col-sm-6.col-lg-4
+                      .form-group
+                        = label_tag 'Email'
+                        = hotel_profile_fields.text_field :email, class: 'form-control'
+
+                    .col-sm-6.col-lg-4
+                      .form-group
+                        = label_tag 'Phone'
+                        = hotel_profile_fields.text_field :phone, class: 'form-control'
+                    .col-sm-6.col-lg-4
+                      .form-group
+                        %br
+                        = hotel_profile_fields.input :electronic_billing_enabled, as: :boolean
+
+                  .col-sm-3
+                    .form-group
+                      = label_tag('Guaranteed Minimum')
+                      = f.text_field :guaranteed_minimum, class: 'form-control', data: { autonumeric: true }
+
+                  .col-sm-3
+                    .form-group
+                      = label_tag('Go live date')
+                      = f.text_field :go_live_date, class: 'form-control datepicker'
+
+                  .col-sm-3
+                    .form-group
+                      = label_tag('Go finish date')
+                      = f.text_field :go_finish_date, class: 'form-control datepicker'
+
+                  .col-sm-3
+                    .form-group
+                      = label_tag('Cost per room')
+                      = f.text_field :cost_per_room, class: 'form-control', data: { autonumeric: true }
+
+                  .col-sm-3
+                    .form-group
+                      = f.input :commission, as: :float, input_html: { min: '0', max: "100", step: 'any' }, class: 'form-control', label: 'Ayenda commission %'
+                  .col-sm-3
+                    .form-group
+                      %br
+                      = f.input :children_allowed, as: :boolean
+
+                #channel_manager.tab-pane{role: "tabpanel"}
+                  = hotel_progress_bar_with_info(@hotel.settings_progress['channel_manager_progress'], 'Deben estar llenos todos los campos')
+                  .col-sm-12
+                    .col-sm-2
+                      = f.label :channel_manager, 'Status'
+                      = f.check_box :channel_manager
+                    .col-sm-6
+                      .form-group
+                        = f.label :property_id
+                        = f.text_field :id, class: 'form-control', disabled: true
+                  .col-sm-12
+                    .page-header
+                      %h3 Download forms
+                    .col-sm-6.tab-margin-bottom
+                      = link_to('Price Travel', generate_ota_form_admin_ops_hotel_otas_forms_path(format: :js, hotel_id: @hotel.id, kind: :price_travel), class: 'btn btn-default ota-download-button', remote: true)
+                      = link_to('Best Day', generate_ota_form_admin_ops_hotel_otas_forms_path(format: :js, hotel_id: @hotel.id, kind: :best_day), class: 'btn btn-default ota-download-button', remote: true)
+                      = link_to('Download file', '#', class: 'btn btn-success', style: 'display: none', id: 'download-file-button')
+                      = button_tag class: 'btn btn-info', id: 'loadingExportButton', style: 'display: none;' do
+                        Cargando
+                        %i.fa.fa-circle-o-notch.fa-spin
+
+                #room_accommodations.tab-pane{role: "tabpanel"}
+                  = hotel_progress_bar_with_info(@hotel.settings_progress['accommodations_progress'], 'Debe estar configurado el piso y la acomodación de cada habitación')
+                  .col-sm-12
+                    .form-inline
+                      .form-group
+                        = f.simple_fields_for :room_types, @room_types do |room_type_form|
+                          - rooms = room_type_form.object.rooms.select(&:active?).sort_by(&:name)
+                          = room_type_form.simple_fields_for :rooms, rooms do |room_form|
+                            = render 'room_fields', f: room_form
+                          = link_to_add_association "Add Room", room_type_form, :rooms, class: 'btn btn-success add-room-button', 'data-association-insertion-node': "#rooms_form", 'data-association-insertion-method': 'append'
+
+                #integrations.tab-pane{role: "tabpanel"}
+                  = hotel_progress_bar_with_info(@hotel.settings_progress['integrations_progress'], 'Debe poner las ids de cada integración del hotel')
+                  - Rules.integrations.each do |_, values|
+                    - integration = @hotel.hotel_integrations.find_or_initialize_by(name: values['name'], external_code: values['code'])
+
+                    .col-xs-12
+                      .page-headerPrule
+                        %h3= values['name']
+                      = f.simple_fields_for :hotel_integrations, integration do |hi|
+                        = hi.input :name, as: :hidden
+                        .col-sm-6
+                          = hi.input :external_code, label: 'Integration Code', readonly: true
+                        .col-sm-6
+                          = hi.input :external_id, label: 'Integration Id'
+                #users.tab-pane{role: "tabpanel"}
+                  = render 'users'
+              .form-group.pull-left.call-center-link
+                = f.submit 'Save', class: 'btn btn-default'
