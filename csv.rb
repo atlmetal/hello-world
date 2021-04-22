@@ -83,3 +83,11 @@ module Hotels
     end
   end
 end
+
+
+  #   room.save!
+        
+  #   room
+  # rescue => e
+  #   binding.pry
+  #   message_struct << e.message + " room, on row #{index}"
