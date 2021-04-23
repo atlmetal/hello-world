@@ -15,19 +15,65 @@ RSpec.describe Hotels::AddAccommodationMappingService, type: :service do
   let!(:room_types) { hotel.room_types } ???????????????
   # let!(:accommodation_ids) { Accommodation.ids }
 
-  describe '#call' do
-    it 'read and save each data from column & row' do
-      binding.pry
-      expect(var.values).to all(be_between(0,50))
+  
+  
+  
+  
+  
+  
+  require 'rails_helper'
 
-      expect(name).not_to be_empty
-      expect(minimum_rate).not_to be_empty
-      expect(room_type).not_to be_empty
-      expect(categoria).not_to be_empty
-      expect(floor).not_to be_empty
-      expect(online_sell).not_to be_empty
-      expect(observations).not_to be_empty
-      expect(scores).not_to be_empty
+RSpec.describe Hotels::AddAccommodationMappingService, type: :service do
+  let(:user) { create(:user, role: :super_admin) }
+  let!(:hotel) { create(:hotel, :with_dependencies, default_room: false, name: 'Hotel California', room_types_attributes: [attributes_for(:room_type, name: 'Sencilla', category: :suite), attributes_for(:room_type, name: 'Doble', category: :standard), attributes_for(:room_type, name: 'Twin', category: :superior), attributes_for(:room_type, name: 'Triple', category: :economic), attributes_for(:room_type, name: 'Cuádruple'), attributes_for(:room_type, name: 'Quintuple'), attributes_for(:room_type, name: 'Sextuple'), attributes_for(:room_type, name: 'Familiar')]) }
+
+  let!(:csv) do
+    File.open('spec/support/files/accommodation_mapping.csv')
+  end
+
+  describe '#call' do
+  end
+
+  before do 
+    accommodaciones = ['King', 'Queen', 'Semidoble']
+    
+    accommodaciones.map do |accommodation_name|
+      create(:accommodation, name: accommodation_name)
+    end
+
+    amenidades = ['Toallas de cuerpo', 'Toallas de mano', 'Ventilación', 'Mesa de noche', 'Balcón', 'Ventilador', 'Ventana a la calle', 'Aire acondicionado', 'Jacuzzi', 'Bañera', 'Escritorio', 'Sofá', 'Sofá-cama', 'Cocineta', 'Nevera', 'Minibar', 'Closet']
+
+    amenidades.map do |amenity_name|
+      create(:amenity, name: amenity_name)
     end
   end
+
+  describe '#call' do
+    subject { described_class.call(csv, user, hotel) }
+
+    context 'when everything is perfect' do
+      it 'read and save each data from column & row' do
+        # binding.pry
+        expect(var.values).to all(be_between(0,50))
+        # Asegurar que reciba los valores esperados
+        expect(name).not_to be_empty
+        expect(minimum_rate).not_to be_empty
+        expect(room_type).not_to be_empty
+        expect(categoria).not_to be_empty
+        expect(floor).not_to be_empty
+        expect(online_sell).not_to be_empty
+        expect(observations).not_to be_empty
+        expect(scores).not_to be_empty
+      end
+    end
+
+    context 'when everything is fucked up' do
+      it 'raises the following errors when some filds are empty or wrong' do
+          expect(subject).to include('Field accommodation is not valid on row 4')
+          binding.pry
+          expect(subject).to include('Field accommodation is not valid on row 3')
+      end
+    end
+  end
+  # Crear el context de room (validar cuantas se crearon, o si se crearon con el nombre que yo les di, en fin, validar como uno crea conveniente. Context del Room_accommodation, cuantos se crearon)
 end
