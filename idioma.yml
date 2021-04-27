@@ -1,0 +1,55 @@
+    amenities:
+        toallas_de_cuerpo: Body towel
+        toallas_de_mano: Hand towel
+        ventilacion: Ventilation
+        mesa_de_noche: Nightstand
+        balcon: Balcony
+        ventilador: Fan
+        ventana_a_la_calle: Window facing the street
+        aire_acondicionado: Air conditioning
+        jacuzzi: Jacuzzi
+        bañera: Bathtub
+        escritorio: Desk
+        sofa: Couch
+        sofa_cama: Sofa bed
+        cocineta: Kitchenette
+        nevera: Nevera
+        minibar: Fridge
+        closet: Closet
+
+      accommodation:
+        sencilla: Single
+        semidoble: Semidouble
+        doble: Double
+        camarote: Cabin bed
+        queen: Queen
+        king: King
+        
+        
+        
+       amenities:
+        toallas_de_cuerpo: Toallas de cuerpo
+        toallas_de_mano: Toallas de mano
+        ventilacion: Ventilacion
+        mesa_de_noche: Mesa de noche
+        balcon: Balcon
+        ventilador: Ventilador
+        ventana_a_la_calle: Ventana a la calle
+        aire_acondicionado: Aire acondicionado
+        jacuzzi: Jacuzzi
+        bañera: Bañera
+        escritorio: Escritorio
+        sofa: Sofa
+        sofa_cama: Sofa-cama
+        cocineta: Cocineta
+        nevera: Nevera
+        minibar: Minibar
+        closet: Closet
+
+      accommodation:
+        sencilla: Sencilla
+        semidoble: Semidoble
+        doble: Doble
+        camarote: Camarote
+        queen: Queen
+        king: King
