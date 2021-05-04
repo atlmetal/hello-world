@@ -62,3 +62,18 @@ $(function() {
     }
   });
 });
+
+
+hotel_contrroler.rb
+
+    flash[:important_alert] = unless response.empty?
+      "Se presentaron los siguientes problemas: <br> #{response.join("<br>")}"
+    else
+      'Inventario actualizado'
+    end
+
+    flash[:important_alert] = if !response.empty?
+      'Inventario actualizado'
+    else
+      "Se presentaron los siguientes problemas: <br> #{response.join("<br>")}"
+    end
